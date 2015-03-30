@@ -49,89 +49,85 @@ import java.util.regex.Pattern;
 import net.jforum.entities.Topic;
 
 /**
- * Represents the In-Reply-To and Message-ID mail header.
+ * Represents the In-Reply-To and Message-ID mail header.1
  * 
  * @author Rafael Steil
  * @version $Id: MessageId.java,v 1.4 2006/10/09 03:05:54 rafaelsteil Exp $
  */
-public class MessageId
-{
+public class MessageId {
 	private static final Random random = new Random(System.currentTimeMillis());
 	private int topicId;
-	
+
 	/**
 	 * Returns the topic id this header holds.
 	 * 
 	 * @return the topic id represented by this instance
 	 */
-	public int getTopicId()
-	{
+	public int getTopicId() {
 		return this.topicId;
-	}
-	
-	/**
-	 * Constructs the Message-ID header.
-	 * The form is "&lt;postId.topicId.forumId.randomNumber@jforum&gt;".
-	 * 
-	 * @param postId the post id of this message
-	 * @param topicId the topic id of this message
-	 * @param forumId the forum id of this message
-	 * @return the Message-ID header
-	 */
-	public static String buildMessageId(int postId, int topicId, int forumId)
-	{
-		return new StringBuffer()
-			.append('<')
-			.append(postId)
-			.append('.')
-			.append(topicId)
-			.append('.')
-			.append(forumId)
-			.append('.')
-			.append(System.currentTimeMillis())
-			.append(random.nextInt(999999999))
-			.append("@jforum>")
-			.toString();
 	}
 
 	/**
-	 * Constructs the In-Reply-To header.
-	 * The form is "&lt;topicFirstPostId.topicId.forumId.randomNumber@jforum&gt;".
-	 *  
-	 * @param topic The topic we're replying to. If should have at least the
-	 * values for {@link Topic#getFirstPostId()}, {@link Topic#getId()}
-	 * and {@link Topic#getForumId()}
+	 * Constructs the Message-ID header. The form is
+	 * "&lt;postId.topicId.forumId.randomNumber@jforum&gt;".
+	 * 
+	 * @param postId
+	 *            the post id of this message
+	 * @param topicId
+	 *            the topic id of this message
+	 * @param forumId
+	 *            the forum id of this message
+	 * @return the Message-ID header
+	 */
+	public static String buildMessageId(int postId, int topicId, int forumId) {
+		return new StringBuffer().append('<').append(postId).append('.')
+				.append(topicId).append('.').append(forumId).append('.')
+				.append(System.currentTimeMillis())
+				.append(random.nextInt(999999999)).append("@jforum>")
+				.toString();
+	}
+
+	/**
+	 * Constructs the In-Reply-To header. The form is
+	 * "&lt;topicFirstPostId.topicId.forumId.randomNumber@jforum&gt;".
+	 * 
+	 * @param topic
+	 *            The topic we're replying to. If should have at least the
+	 *            values for {@link Topic#getFirstPostId()},
+	 *            {@link Topic#getId()} and {@link Topic#getForumId()}
 	 * 
 	 * @return the In-Reply-To header
 	 */
-	public static String buildInReplyTo(Topic topic)
-	{
-		return buildMessageId(topic.getFirstPostId(), topic.getId(), topic.getForumId());
+	public static String buildInReplyTo(Topic topic) {
+		return buildMessageId(topic.getFirstPostId(), topic.getId(),
+				topic.getForumId());
 	}
-	
+
 	/**
 	 * Parses the header, extracting the information it holds
-	 * @param header the header's contents to parse
+	 * 
+	 * @param header
+	 *            the header's contents to parse
 	 * @return the header information parsed
 	 */
-	public static MessageId parse(String header)
-	{
+	public static MessageId parse(String header) {
 		MessageId messageId = new MessageId();
-		
+
 		if (header != null) {
 			// <postId.topicId.forumId.randomNumber@host>
-			Matcher matcher = Pattern.compile("<(.*?)\\.(.*?)\\.(.*?)\\.(.*?)@.*>").matcher(header);
-			
+			Matcher matcher = Pattern.compile(
+					"<(.*?)\\.(.*?)\\.(.*?)\\.(.*?)@.*>").matcher(header);
+
 			if (matcher.matches()) {
 				String s = matcher.group(2);
-				
+
 				try {
 					messageId.topicId = Integer.parseInt(s);
+				} catch (Exception e) {
 				}
-				catch (Exception e) { }
 			}
 		}
-		
+
 		return messageId;
 	}
 }
