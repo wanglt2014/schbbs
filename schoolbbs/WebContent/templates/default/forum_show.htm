@@ -22,15 +22,15 @@
 		</p>
 	</div>
 	<div id="headsearch">
-		<form accept-charset="${encoding}" action="${JForumContext.encodeURL("/iforums")}" method="get" id="formSearch" name="formSearch">
-			<input type="hidden" name="module" value="search"/>
-			<input type="hidden" name="action" value="search"/>
-			<input type="hidden" name="forum" value="${forum.id}">
-			<input type="hidden" name="match_type" value="all">
-			<img valign="bottom" onclick="javascript:window.open('http://www.google.cn/')" src="${contextPath}/templates/${templateName}/images/google.png">
-			<input type="text" onblur="if (this.value == '') this.value = '${I18n.getMessage("ForumIndex.searchThisForum")}...';" onclick="if (this.value == '${I18n.getMessage("ForumIndex.searchThisForum")}...') this.value = '';" value="${I18n.getMessage("ForumIndex.searchThisForum")}..." size="20" name="search_keywords" class="inputSearchForum"/>
-			<input type="submit" value="${I18n.getMessage("ForumBase.search")}" class="liteoption">
-		</form>
+<!-- 		<form accept-charset="${encoding}" action="${JForumContext.encodeURL("/iforums")}" method="get" id="formSearch" name="formSearch"> -->
+<!-- 			<input type="hidden" name="module" value="search"/> -->
+<!-- 			<input type="hidden" name="action" value="search"/> -->
+<!-- 			<input type="hidden" name="forum" value="${forum.id}"> -->
+<!-- 			<input type="hidden" name="match_type" value="all"> -->
+<!-- 			<img valign="bottom" onclick="javascript:window.open('http://www.google.cn/')" src="${contextPath}/templates/${templateName}/images/google.png"> -->
+<!-- 			<input type="text" onblur="if (this.value == '') this.value = '${I18n.getMessage("ForumIndex.searchThisForum")}...';" onclick="if (this.value == '${I18n.getMessage("ForumIndex.searchThisForum")}...') this.value = '';" value="${I18n.getMessage("ForumIndex.searchThisForum")}..." size="20" name="search_keywords" class="inputSearchForum"/> -->
+<!-- 			<input type="submit" value="${I18n.getMessage("ForumBase.search")}" class="liteoption"> -->
+<!-- 		</form> -->
 	</div>
 	<#assign moderators = forumRepository.getModeratorIdList(forum.id)/>
 	<#if (moderators.size() > 0)>

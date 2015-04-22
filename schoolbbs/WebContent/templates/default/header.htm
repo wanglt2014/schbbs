@@ -19,7 +19,7 @@
 <table cellspacing="0" cellpadding="0" width="100%" border="0">
 	<tr>
 		<td>
-			<a href="${homepageLink}"><img src="${contextPath}/templates/${templateName}/images/logo.jpg"  vspace="1" border="0" alt="[Logo]" /></a>
+			<a href="${homepageLink}"><img src="${contextPath}/templates/${templateName}/images/logo2.jpg"  vspace="1" border="0" alt="[Logo]" /></a>
 		</td>					 
 		<td width="100%" align="center" valign="middle">
 			<!--span class="boardtitle">${forumTitle?default("JForum")}</span-->
@@ -41,7 +41,7 @@
 		<li><a id="login" class="mainmenu" href="${JForumContext.encodeURL("/user/login")}">
 		 ${I18n.getMessage("ForumBase.login")}</a></li>
 	</#if>
-	<li><a id="search" class="mainmenu" href="${JForumContext.encodeURL("/search/filters")}">${I18n.getMessage("ForumBase.search")}</a></li>
+<!-- 	<li><a id="search" class="mainmenu" href="${JForumContext.encodeURL("/search/filters")}">${I18n.getMessage("ForumBase.search")}</a></li> -->
 	<li><a id="latest" class="mainmenu" href="${JForumContext.encodeURL("/recentTopics/list")}">${I18n.getMessage("ForumBase.recentTopics")}</a></li>
 	<li><a id="hottest" class="mainmenu" href="${JForumContext.encodeURL("/hottestTopics/list")}">${I18n.getMessage("ForumBase.hottestTopics")}</a></li>
 	<li><a id="latest2" class="mainmenu" href="${JForumContext.encodeURL("/user/list")}">${I18n.getMessage("ForumBase.usersList")}</a></li>
